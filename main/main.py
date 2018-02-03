@@ -6,9 +6,11 @@ app.DEBUG = True
 @app.route('/')
 @app.route('/index/')
 def index():
-    # user = session.get('curID') or request.cookies.get('curID')
-    # if user:
-    return render_template('index.html', {'user':user})
+    data = {'hello':'hello'}
+    user = session.get('curID') or request.cookies.get('curID')
+    if user:
+        data['user'] = user
+    return render_template('index.html', data)
 
     if request.method == 'POST':# 当提交表单时
         acc = request.POST['account']

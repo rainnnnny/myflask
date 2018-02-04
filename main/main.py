@@ -30,12 +30,12 @@ def index():
         return render_template('login.html')
 
 @app.route('/formhello/')
-def formhello(request):
+def formhello():
     return request['hello']
 
 
 @app.route('/ajaxhello/')
-def ajaxhello(request):
+def ajaxhello():
     return request['a']
 
 

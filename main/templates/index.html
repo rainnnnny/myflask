@@ -37,7 +37,7 @@
 
     <form action="/formhello/" class="form-signin" method="get">        
         say what you want to say: <br><input type="text" name="hello"><br>
-        <button class="btn btn-lg btn-primary btn-block" type="submit">say</button>
+        <button class="btn btn-sm btn-primary" type="submit">say</button>
     </form>
 
     <p>ryougishiki: </p>
@@ -52,13 +52,9 @@
 
     <script>
 
-        $.ajaxSetup({
-            data: { csrfmiddlewaretoken: '{{ csrf_token }}' },
-        });
-
         $(document).ready(function () {
             // 求和 a + b
-            $("#sum").click(function () {
+            $("#ab").click(function () {
                 var a = $("#a").val();
                 var b = $("#b").val();
                 $.ajax({

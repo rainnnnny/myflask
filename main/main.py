@@ -29,6 +29,16 @@ def index():
     else:
         return render_template('login.html')
 
+@app.route('/formhello/')
+def formhello(request):
+    return request['hello']
+
+
+@app.route('/ajaxhello/')
+def ajaxhello(request):
+    return request['a']
+
+
 def logout(request):
     try:
         del session['curID']

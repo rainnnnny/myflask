@@ -31,12 +31,14 @@ def index():
 
 @app.route('/formhello/')
 def formhello():
-    return request['hello']
+    return request.form['hello']
 
 
 @app.route('/ajaxhello/')
 def ajaxhello():
-    return request['a']
+    b = request.args.get('b', '')
+    print('bbbbbbbb': b)
+    return request.form['a']
 
 
 def logout(request):

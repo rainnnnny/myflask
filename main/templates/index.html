@@ -62,7 +62,7 @@
                 var b = $("#b").val();
                 $.ajax({
                     type: "post",
-                    url: "{% url 'ajaxhello' %}",
+                    url: "/ajaxhello/",
                     data: { 'a': a, 'b': b },
                     success: function (ret) {
                         $('#result').html(ret);

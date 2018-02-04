@@ -36,18 +36,17 @@
 <body>
 
     <form action="/formhello/" class="form-signin" method="get">        
-        say what you want to say: <br><input type="text" name="hello"><br>
+        say what you want to say:  <input type="text" name="hello">   
         <button class="btn btn-sm btn-primary" type="submit">say</button>
     </form>
 
-    <p>ryougishiki: </p>
-    <p>
+    <p>ryougi: 
         <input type="text" id="a" name="a">
-        <input type="text" id="b" name="b">
+        <!-- <input type="text" id="b" name="b"> -->
         <p>result:
             <span id='result'></span>
         </p>
-        <button type="button" id='ab'>submit</button>
+        <button type="button" class="btn btn-sm btn-primary" id='ab'>shiki</button>
     </p>
 
     <script>
@@ -56,7 +55,7 @@
             // 求和 a + b
             $("#ab").click(function () {
                 var a = $("#a").val();
-                var b = $("#b").val();
+                var b = a;//$("#b").val();
                 $.ajax({
                     type: "post",
                     url: "/ajaxhello/",

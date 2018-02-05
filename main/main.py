@@ -36,8 +36,6 @@ def formhello():
 
 @app.route('/ajaxhello/')
 def ajaxhello():
-    b = request.args.get('b', '')
-    print('bbbbbbbb:', b)
     return request.form['a']
 
 

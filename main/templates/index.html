@@ -50,10 +50,7 @@
     </p>
 
     <script>
-        $.ajaxSetup({
-                data: { csrfmiddlewaretoken: '{{ csrf_token }}' },
-            });
-            
+
         $(document).ready(function () {
             // 求和 a + b
             $("#ab").click(function () {

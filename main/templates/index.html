@@ -36,12 +36,12 @@
 <body>
 
     <div class="center-block" >
-    <form class="center-block" action="/formhello/" class="form-signin" method="get">        
-        say what you want to say:  <input type="text" name="hello">   
+    <form class="center-block" action="/formhello/" class="form-signin" method="get">
+        say what you want to say:  <input type="text" name="ryougi">
         <button class="btn btn-sm btn-primary" type="submit">say</button>
     </form>
     </div>
-    <p>ryougi: 
+    <p>ryougi:
         <input type="text" id="a" name="a">
         <!-- <input type="text" id="b" name="b"> -->
         <p>result:
@@ -56,11 +56,10 @@
             // 求和 a + b
             $("#ab").click(function () {
                 var a = $("#a").val();
-                var b = a;//$("#b").val();
                 $.ajax({
-                    type: "post",
+                    type: "get",
                     url: "/ajaxhello/",
-                    data: { 'a': a, 'b': b },
+                    data: { 'shiki': a },
                     success: function (ret) {
                         $('#result').html(ret);
                     }

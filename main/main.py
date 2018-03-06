@@ -31,34 +31,13 @@ def index():
 
 @app.route('/formhello/')
 def formhello():
-    print('formhello', request)
-    print(request.form, request.args, type(request.args), dir(request))
-    return 'fuck'
+    print(request.form, request.args)
+    return request.args['ryougi']
 
 
 @app.route('/ajaxhello/')
 def ajaxhello():
-    print('hefuckingllo', request)
-    print(request.args, type(request.args), dir(request))
-    return 'hello'
-
-
-def logout(request):
-    try:
-        del session['curID']
-    except KeyError:
-        pass
-    response = redirect('/index/')
-    response.delete_cookie('curID')
-    return response
-
-def Authenticate(acc, psw):
-    oQuerySet = User.objects.filter(Account=acc)
-    if not oQuerySet:
-        return AUTH_ACCERROR
-    oUser = oQuerySet[0]
-    if not oUser.PswVerify(psw):
-        return AUTH_PSWERROR
-    return AUTH_SUCCESS
+    print(request.args)
+    return request.args['shiki']
 
 # AUTH END

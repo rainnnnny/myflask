@@ -50,7 +50,15 @@
         <button type="button" class="btn btn-sm btn-primary" id='ab'>shiki</button>
     </p>
 
+
+    <p id='head'></p>
+
     <script>
+
+        function create(ret){
+            $('#head').append('<button type="button" class="btn btn-primary">' + ret + '</button>');
+        
+        }
 
         $(document).ready(function () {
             // 求和 a + b
@@ -61,21 +69,22 @@
                     url: "/ajaxhello/",
                     data: { 'shiki': a },
                     success: function (ret) {
-                        $('#result').html(ret);
+                        create(ret)
                     }
                 })
             });
         });
-    </script>
 
-    <span class="badge badge-pill badge-secondary">Secondary</span>
-    <span class="badge badge-pill badge-success">Success</span>
-    <span class="badge badge-pill badge-danger">Danger</span>
-    <span class="badge badge-pill badge-warning">Warning</span>
-    <span class="badge badge-pill badge-info">Info</span>
-    <span class="badge badge-pill badge-light">Light</span>
-    <span class="badge badge-pill badge-dark">Dark</span>
+    </script>
     
+    <span class="badge badge-primary">Primary</span>
+    <span class="badge badge-pill badge-secondary">Secondary</span>
+        <span class="badge badge-pill badge-success">Success</span>
+            <span class="badge badge-pill badge-danger">Danger</span>
+                <span class="badge badge-pill badge-warning">Warning</span>
+                    <span class="badge badge-pill badge-info">Info</span>
+                        <span class="badge badge-pill badge-light">Light</span>
+                            <span class="badge badge-pill badge-dark">Dark</span>
 
     <button type="button" class="btn btn-primary">Primary</button>
     <button type="button" class="btn btn-secondary">Secondary</button>
@@ -111,6 +120,5 @@
                   <div class="alert alert-dark" role="alert">
                     This is a dark alert—check it out!
                     </div>
-
 
 </body>

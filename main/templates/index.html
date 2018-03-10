@@ -35,19 +35,20 @@
 
 <body>
 
-    <div class="center-block" >
+    <!-- <div class="center-block" >
     <form class="center-block" action="/formhello/" class="form-signin" method="get">
         say what you want to say:  <input type="text" name="ryougi">
         <button class="btn btn-sm btn-primary" type="submit">say</button>
     </form>
     </div>
-    <p>ryougi:
-        <input type="text" id="a" name="a">
-        <!-- <input type="text" id="b" name="b"> -->
-        <p>result:
+    -->
+
+    <p>People talking without speaking:
+        <input type="text" id="text1" name="text1">
+        <!-- <p>result:
             <span id='result'></span>
-        </p>
-        <button type="button" class="btn btn-sm btn-primary" id='ab'>shiki</button>
+        </p> -->
+        <button type="button" class="btn btn-sm btn-primary" id='ab'>Speak</button>
     </p>
 
 
@@ -63,11 +64,11 @@
         $(document).ready(function () {
             // 求和 a + b
             $("#ab").click(function () {
-                var a = $("#a").val();
+                var text1 = $("#text1").val();
                 $.ajax({
                     type: "get",
                     url: "/ajaxhello/",
-                    data: { 'shiki': a },
+                    data: { 'shiki': text1 },
                     success: function (ret) {
                         create(ret)
                     }
@@ -77,48 +78,5 @@
 
     </script>
     
-    <span class="badge badge-primary">Primary</span>
-    <span class="badge badge-pill badge-secondary">Secondary</span>
-        <span class="badge badge-pill badge-success">Success</span>
-            <span class="badge badge-pill badge-danger">Danger</span>
-                <span class="badge badge-pill badge-warning">Warning</span>
-                    <span class="badge badge-pill badge-info">Info</span>
-                        <span class="badge badge-pill badge-light">Light</span>
-                            <span class="badge badge-pill badge-dark">Dark</span>
-
-    <button type="button" class="btn btn-primary">Primary</button>
-    <button type="button" class="btn btn-secondary">Secondary</button>
-    <button type="button" class="btn btn-success">Success</button>
-    <button type="button" class="btn btn-danger">Danger</button>
-    <button type="button" class="btn btn-warning">Warning</button>
-    <button type="button" class="btn btn-info">Info</button>
-    <button type="button" class="btn btn-light">Light</button>
-    <button type="button" class="btn btn-dark">Dark</button>
-
-
-    <div class="alert alert-primary" role="alert">
-      This is a primary alert—check it out!
-      </div>
-      <div class="alert alert-secondary" role="alert">
-        This is a secondary alert—check it out!
-        </div>
-        <div class="alert alert-success" role="alert">
-          This is a success alert—check it out!
-          </div>
-          <div class="alert alert-danger" role="alert">
-            This is a danger alert—check it out!
-            </div>
-            <div class="alert alert-warning" role="alert">
-              This is a warning alert—check it out!
-              </div>
-              <div class="alert alert-info" role="alert">
-                This is a info alert—check it out!
-                </div>
-                <div class="alert alert-light" role="alert">
-                  This is a light alert—check it out!
-                  </div>
-                  <div class="alert alert-dark" role="alert">
-                    This is a dark alert—check it out!
-                    </div>
 
 </body>

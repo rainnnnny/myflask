@@ -29,10 +29,9 @@ def index():
     else:
         return render_template('login.html')
 
-@app.route('/formhello/')
+@app.route('/test/')
 def formhello():
-    print(request.form, request.args)
-    return request.args['ryougi']
+    return render_template('test.html')
 
 
 @app.route('/ajaxhello/')

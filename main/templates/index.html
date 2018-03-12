@@ -16,7 +16,9 @@
     <link rel="icon" href="../static/images/app.ico">
 
     <script src="../static/js/jquery-3.2.1.js"></script>
-
+    <script src="https://code.jquery.com/ui/1.12.1/jquery-ui.min.js" integrity="sha256-VazP97ZCwtekAsvgPBSUwPFKdrwD3unUfSGVYrahUqU="
+        crossorigin="anonymous"></script>
+    
     <!-- Icons ========================================================================= -->
     <!-- <link href="../static/bootstrap/css/icons.css" rel="stylesheet" /> -->
     <!-- Bootstrap stylesheets (included template modifications) -->
@@ -26,7 +28,7 @@
     <!-- Main stylesheets (template main css file) -->
     <!-- <link href="../static/bootstrap/css/main.css" rel="stylesheet" /> -->
     <!-- Custom stylesheets ( Put your own changes here ) -->
-    <!-- <link href="../static/bootstrap/css/custom.css" rel="stylesheet" /> -->
+    <link href="../static/bootstrap/css/custom.css" rel="stylesheet" />
     <!-- Windows8 touch icon ( http://www.buildmypinnedsite.com/ )-->
     <meta name="msapplication-TileColor" content="#3399cc" />
     <!-- ================================================================================= -->
@@ -43,38 +45,67 @@
     </div>
     -->
 
-    <p>People talking without speaking:
-        <input type="text" id="text1" name="text1">
-        <!-- <p>result:
-            <span id='result'></span>
-        </p> -->
-        <button type="button" class="btn btn-sm btn-primary" id='ab'>Speak</button>
-    </p>
+    <div class="input-group" id="inputdiv">
+        <div class="input-group-prepend">
+            <span class="input-group-text text-light bg-dark">People talking without speaking:
+            </span>
+        </div>
+        <input type="text" class="form-control" id="text1" name="text1">
+        <button type="button" class="btn btn-sm btn-dark" id="speak">Speak</button>
+        <button type="button" class="btn btn-sm btn-dark" id="all">All in</button>
+    </div>
 
-
-    <p id='head'></p>
 
     <script>
 
-        function create(ret){
-            $('#head').append('<button type="button" class="btn btn-primary">' + ret + '</button>');
-        
+    function create(ret){
+        var colortype = new Array('primary', 'secondary', 'success', 'danger', 'warning', 'info', 'light', 'dark');
+        var rcolor = colortype[Math.floor(Math.random()*8)];
+        var top = Math.random() * document.body.offsetHeight;
+        var left = Math.random() * document.body.offsetWidth;
+        if (top < $('#inputdiv').height() + 2){
+            top = $('#inputdiv').height() + 2
         }
+        
+        $('body').append("<div class='btn1 btn-" + rcolor + "' style='position: fixed; top: " + top + 
+        "px; left: " + left + "px;'>" + ret + '</div>');
 
-        $(document).ready(function () {
-            // 求和 a + b
-            $("#ab").click(function () {
-                var text1 = $("#text1").val();
+        $(".btn1").draggable();
+    }
+
+    $(document).ready(function () {
+        // 求和 a + b
+        $("#speak").click(function () {
+            var text1 = $("#text1").val().replace(/(^\s*)|(\s*$)/g, '');
+
+            if (text1 == '' || text1 == undefined || text1 == null){
+                return
+            }
+            else{
                 $.ajax({
                     type: "get",
                     url: "/ajaxhello/",
                     data: { 'shiki': text1 },
                     success: function (ret) {
-                        create(ret)
+                        create(ret);
                     }
                 })
-            });
+            }
         });
+
+        $("#all").click(function () {
+            $.ajax({
+                type: "get",
+                url: "/ajaxall/",
+                data: "",
+                success: function (ret) {
+                    for (var i = 0; i < ret.length; i++)
+                        create(ret[i]);
+                }
+            })
+        });
+
+    });
 
     </script>
     

@@ -1,20 +1,15 @@
 import math
 from flask import Flask, session, request, render_template, jsonify, Response, g
 import pymysql
+from . import logger
 
 app = Flask(__name__)
 app.DEBUG = True
-# app.config.from_pyfile('config.py')
 
-app.config.update(
-    DATABASE='mysql://root:qwer1234@localhost:3306/items',
-    SECRET_KEY='development key',
-    USERNAME='root',
-    PASSWORD='qwer1234'
-)
+app.config.from_pyfile('config.py')
 
 
-alled = False
+log = logger.getlogger('main')
 
 
 @app.route('/')
@@ -46,21 +41,21 @@ def index():
 @app.route('/test/')
 def test():
 
-    print(app.config.get('a'))
+    print('TTTEST:', app.config.get('TTTEST'))
 
     db = get_db()
     db.execute('select * from items;')
     print(db.fetchall())
 
-    for each in dir(request):
-        print(each, ':', '------------', getattr(request, each))
+    # for each in dir(request):
+    #     print(each, ':', '------------', getattr(request, each))
 
     return render_template('test.html')
 
 
 @app.route('/ajaxhello/')
 def ajaxhello():
-    print(request.args)
+    log.info("hello, %s" % request.args)
     shiki = request.args['shiki']
     if shiki:
         insert_items(shiki, request.remote_addr)
@@ -69,25 +64,20 @@ def ajaxhello():
 
 @app.route('/ajaxall/')
 def get_all():
-    global alled
-    if alled:
-        return Response()
-    alled = True
     db = get_db()
-    db.execute('select * from books;')
+    db.execute('select * from items;')
 
     res = []
     res_all = db.fetchall()
     
     for each in res_all:
-        print(each[1], type(each[1]), each[1].encode('utf8'))
-        res.append(each[1])
+        res.append(each[0])
     
     return jsonify(res)
 
 def get_db():
     if not hasattr(g, 'db'):
-        print('get_db')
+        # 注意指定charset避免乱码
         db = pymysql.connect("localhost", "root",
                              "qwer1234", "mytest", charset='utf8')
         g.db = db

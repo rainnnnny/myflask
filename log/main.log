@@ -1,0 +1,2 @@
+2018-03-14 23:40:26,450 main.py ajaxhello INFO: hello, ImmutableMultiDict([('shiki', 'Why does the sea wash to shore')])
+2018-03-14 23:41:29,540  main.py  ajaxhello  INFO:  hello, ImmutableMultiDict([('shiki', 'qqqqwe')])

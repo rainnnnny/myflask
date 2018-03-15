@@ -84,7 +84,7 @@
             else{
                 $.ajax({
                     type: "get",
-                    url: "/ajaxhello/",
+                    url: "/shiki/",
                     data: { 'shiki': text1 },
                     success: function (ret) {
                         create(ret);
@@ -96,7 +96,7 @@
         $("#all").click(function () {
             $.ajax({
                 type: "get",
-                url: "/ajaxall/",
+                url: "/getall/",
                 data: "",
                 success: function (ret) {
                     for (var i = 0; i < ret.length; i++)

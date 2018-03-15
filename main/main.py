@@ -53,8 +53,8 @@ def test():
     return render_template('test.html')
 
 
-@app.route('/ajaxhello/')
-def ajaxhello():
+@app.route('/shiki/')
+def shiki():
     log.info("hello, %s" % request.args)
     shiki = request.args['shiki']
     if shiki:
@@ -62,7 +62,7 @@ def ajaxhello():
         return shiki
 
 
-@app.route('/ajaxall/')
+@app.route('/getall/')
 def get_all():
     db = get_db()
     db.execute('select * from items;')

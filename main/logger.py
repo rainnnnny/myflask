@@ -7,6 +7,7 @@ def getlogger(name):
     logger = logging.getLogger(name)
 
     if logger.hasHandlers():
+        print('hasHandlers', logger)
         return logger
 
     formatter = logging.Formatter('%(asctime)s  %(filename)s  %(funcName)s  %(levelname)s:  %(message)s')
@@ -23,5 +24,5 @@ def getlogger(name):
     
     logger.addHandler(handler)
     logger.setLevel(logging.INFO)
-
+    
     return logger

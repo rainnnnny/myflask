@@ -1,7 +1,7 @@
 
 DATABASE = 'mysql://root:qwer1234@localhost:3306/mytest'
 
-TTTEST = '1'
+TTTEST = 'xxxxx'
 
 DB_USER = 'root'
 

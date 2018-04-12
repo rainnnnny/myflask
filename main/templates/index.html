@@ -52,7 +52,8 @@
         </div>
         <input type="text" class="form-control" id="text1" name="text1">
         <button type="button" class="btn btn-sm btn-dark" id="speak">Speak</button>
-        <button type="button" class="btn btn-sm btn-dark" id="all">All in</button>
+        <button type="button" class="btn btn-sm btn-dark" id="random">Get Random</button>
+        <button type="button" class="btn btn-sm btn-dark" id="clear">Clear</button>
     </div>
 
 
@@ -74,35 +75,53 @@
     }
 
     $(document).ready(function () {
-        // 求和 a + b
+
         $("#speak").click(function () {
+            // add one message
             var text1 = $("#text1").val().replace(/(^\s*)|(\s*$)/g, '');
 
-            if (text1 == '' || text1 == undefined || text1 == null){
+            if ( text1 === '' || text1 === undefined || text1 === null){
+                alert('failed')
                 return
             }
             else{
                 $.ajax({
-                    type: "get",
-                    url: "/shiki/",
+                    type: "post",
+                    url: "/shiki",
                     data: { 'shiki': text1 },
                     success: function (ret) {
-                        create(ret);
+                        if (ret.success){
+                            create(ret.shiki);
+                        }
+                        else{
+                            alert('failed')
+                        }
                     }
                 })
             }
         });
-
-        $("#all").click(function () {
+        
+        
+        $("#random").click(function () {
+            // get random message
             $.ajax({
                 type: "get",
-                url: "/getall/",
+                url: "/getrandom",
                 data: "",
                 success: function (ret) {
                     for (var i = 0; i < ret.length; i++)
                         create(ret[i]);
                 }
             })
+        });
+
+        $("#clear").click(function () {
+            $.ajax({
+                type: "get",
+                url: "/clear",
+                data: "",
+            })
+            $(".btn1").remove();
         });
 
     });
